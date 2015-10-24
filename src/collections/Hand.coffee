@@ -9,26 +9,44 @@ class window.Hand extends Backbone.Collection
     # if card chosen added to the total is greater than 21
     # prompt player loses
     # initialize new deck model that should render new game
-    
-    @models[0].flip()
+ 
+
+    # console.log "dealer #{@minScore()}"
+    # console.log "player #{@playerScore}"
     # flipped = flipped || false
+    console.log @
+    debugger;
+
     if @isDealer 
-      console.log 'in dealer'
+     if @minScore() >= 17 && @minScore() <= 21 
+        if @minScore() > @playerScore
+          alert "You Lose!!!"
+        else if @minScore() == @playerScore
+          alert "You Push!!!"
+        else 
+          alert "You Win!!!"
+      else if @minScore() > 21
+        alert "You Win!!!"
+      else 
+        card = @deck.pop()
+        @add(card)
+        @hit()
 
-
-    card = @deck.pop()
-    if card.get('value') + @minScore() > 21 
-      @add(card)
-      alert "You Lose"
-    else 
-      @add(card)
-      @last()
+    if !@isDealer
+      card = @deck.pop()
+      debugger;
+      if card.get('value') + @minScore() > 21 
+        @add(card)
+        alert "You Lose"
+      else 
+        @add(card)
+        @last()
   ,
 
   stand: ->
     #remove covered class from all cards of the dealer
       #@app.set 'playerScore', @minScore()
-      @.score = @minScore()
+      @playerScore = @minScore()
       @trigger('stand', @)
       # console.log @
     #dealer check his hand to see if hand is > 17 or < 17

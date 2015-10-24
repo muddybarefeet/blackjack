@@ -11,12 +11,11 @@ class window.App extends Backbone.Model
     @set 'dealerHand', deck.dealDealer()
     
     @get('playerHand').on 'stand', (->
-      player =  @get 'playerHand'
       dealer = @get 'dealerHand'
-      `dealer.set('playerScore', player.playerScore)`
-      console.log(dealer)
+      dealer.models[0].flip()
+      player =  @get 'playerHand'
+      dealer.playerScore = player.playerScore
       @get('dealerHand').hit()
-      # dealer.set 'playerScore', player.playerScore
     ), @
 
 
