@@ -1,5 +1,6 @@
 
 body {
+  color: white;
   background: url('http://www.casino-sidan.se/images/background.jpg') no-repeat;
    -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -9,7 +10,7 @@ body {
 
 .card {
   float: left;
-  border: solid 2px black;
+  border: solid 2px white;
   width: 100px;
   border-radius: 5px;
   height: 140px;
