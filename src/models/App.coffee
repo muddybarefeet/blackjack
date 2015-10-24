@@ -13,8 +13,10 @@ class window.App extends Backbone.Model
     @get('playerHand').on 'stand', (->
       player =  @get 'playerHand'
       dealer = @get 'dealerHand'
-      dealer.set 'playerScore', player
-      console.log dealer
+      `dealer.set('playerScore', player.playerScore)`
+      console.log(dealer)
+      @get('dealerHand').hit()
+      # dealer.set 'playerScore', player.playerScore
     ), @
 
 
