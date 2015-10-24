@@ -1,0 +1,1 @@
+###render total of the chips on the page###

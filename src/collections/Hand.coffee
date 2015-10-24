@@ -1,32 +1,18 @@
 class window.Hand extends Backbone.Collection
+  
   model: Card
 
   initialize: (array, @deck, @isDealer, @playerScore) ->
 
   hit: ->
-
+    console.log @minScore()
     # @.set('playerScore', @minScore() )
     # if card chosen added to the total is greater than 21
     # prompt player loses
     # initialize new deck model that should render new game
- 
-
-    # console.log "dealer #{@minScore()}"
-    # console.log "player #{@playerScore}"
-    # flipped = flipped || false
-    console.log @
-    debugger;
-
     if @isDealer 
-     if @minScore() >= 17 && @minScore() <= 21 
-        if @minScore() > @playerScore
-          alert "You Lose!!!"
-        else if @minScore() == @playerScore
-          alert "You Push!!!"
-        else 
-          alert "You Win!!!"
-      else if @minScore() > 21
-        alert "You Win!!!"
+      if @whoWinsStr(@minScore,@playerScore)
+        alert @whoWinsStr(@minScore,@playerScore)
       else 
         card = @deck.pop()
         @add(card)
@@ -34,13 +20,24 @@ class window.Hand extends Backbone.Collection
 
     if !@isDealer
       card = @deck.pop()
-      debugger;
       if card.get('value') + @minScore() > 21 
         @add(card)
         alert "You Lose"
       else 
         @add(card)
         @last()
+  ,
+
+  whoWinsStr: (minScore,playerScore)->
+    if minScore() >= 17 && minScore <= 21
+      if minScore() > playerScore
+        return "You Loose!"
+      else if minScore() == playerScore
+        return "You Push!"
+      else 
+        return "You Win!!"
+    else if minScore() > 21
+      return "You Win!!"
   ,
 
   stand: ->
@@ -58,6 +55,10 @@ class window.Hand extends Backbone.Collection
     #re render TOTALS
     #alert who has won pls score
   ,
+
+  last: ->
+    ###return the last card in the deck###
+
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1
