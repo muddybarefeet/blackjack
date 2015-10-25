@@ -18,17 +18,15 @@ describe 'deck', ->
 
     it 'should return the new length of the deck from the last function', ->
       assert.strictEqual deck.models.length, 48
-      assert.strictEqual hand.hit()
-      assert.strictEqual deck.models.length, 47
 
 
-    it 'should check if the dealer > 17 and player < dealer then dealer wins', ->
-      `dealer.minScore() = 19`
-      `dealer.playerscore = 15`
-      `expect(dealer.hit()).to.equal("You Lose!")`
+    it 'should check if player receives a card when hit is pressed', ->
+      `hand.hit()`
+      `expect(hand.models.length).to.equal(3)`
 
     it 'should always finish with a dealers score > 17', ->
-      `expect(dealer.hit()).to.be >17`
+      `dealer.hit()`
+      `expect(dealer.minScore()).to.be.at.least(17)`
 
 
   describe 'stand', ->

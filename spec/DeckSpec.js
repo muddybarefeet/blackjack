@@ -13,7 +13,7 @@ describe('deck', function() {
     var dealer;
     deck = new Deck();
     hand = deck.dealPlayer();
-    return dealer = deck.dealDealer();
+    dealer = deck.dealDealer();
   });
   describe('hit', function() {
     it('should give the last card from the deck', function() {

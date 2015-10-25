@@ -7,7 +7,7 @@ class window.App extends Backbone.Model
 
   initialize: ->
     @set 'deck', deck = new Deck()
-    @set 'playerHand', deck.dealPlayer()
+    @set 'playerHand', deck.dealPlayer() 
     @set 'dealerHand', deck.dealDealer()
     
     @get('playerHand').on 'stand', (->
@@ -17,6 +17,12 @@ class window.App extends Backbone.Model
       dealer.playerScore = player.playerScore
       @get('dealerHand').hit()
     ), @
+
+
+
+    ##listening for click to chip model
+    bet: ->
+      console.log @
 
 
    
